@@ -4,11 +4,17 @@
 
 ##我的翻译对照表
 up & going -> 行动
+
 into programming -> 程序入门
+
 statement -> 语句
+
 literal value -> 字面量
+
 expressions -> 表达式
+
 arithmetic expression -> 算术表达式
+
 assignment expression -> 赋值表达式
 
 * [Chapter 1: 程序入门](ch1_zh.md) 翻译ing
