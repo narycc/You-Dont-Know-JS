@@ -85,17 +85,17 @@ JavaScript 执行的过程叫代码解释，因为JavaScript 源代码是每次�
 
 **贴士** 更多关于JavaScript 编译的信息，参见 **作用域和闭包** 的头两章节。 
 
-## Try It Yourself
+## 动动你的小手
 
-This chapter is going to introduce each programming concept with simple snippets of code, all written in JavaScript (obviously!).
+这一章将会以代码片段的方式介绍每一个变成的概念，当然所有的例子都是JavaScript 写的。
 
-It cannot be emphasized enough: while you go through this chapter -- and you may need to spend the time to go over it several times -- you should practice each of these concepts by typing the code yourself. The easiest way to do that is to open up the developer tools console in your nearest browser (Firefox, Chrome, IE, etc.).
+重要的事情说三遍：当你阅读这一章节内容的时候（或许你会反复阅读好几遍），你一定通过自己动手去写每一段代码来理解这些概念。最简单的方式就是用离你最近的浏览器的开发者工具控制台编写， 火狐，谷歌，IE 浏览器都行。
 
-**Tip:** Typically, you can launch the developer console with a keyboard shortcut or from a menu item. For more detailed information about launching and using the console in your favorite browser, see "Mastering The Developer Tools Console" (http://blog.teamtreehouse.com/mastering-developer-tools-console). To type multiple lines into the console at once, use `<shift> + <enter>` to move to the next new line. Once you hit `<enter>` by itself, the console will run everything you've just typed.
+**贴士：**一般情况下你可以使用快捷键或者从菜单栏来快速打开控制台，[Mastering The Developer Tools Console](http://blog.teamtreehouse.com/mastering-developer-tools-console) 这篇文章有更多关于控制台的开启和使用的详细信息。在控制台下面输入多行代码需要使用`<shift> + <enter>`切换到下一行输入，如果你敲下`<enter>`，控制台会执行你在控制台中输入的内容。
 
-Let's get familiar with the process of running code in the console. First, I suggest opening up an empty tab in your browser. I prefer to do this by typing `about:blank` into the address bar. Then, make sure your developer console is open, as we just mentioned.
+那我们就来熟悉一下控制台下面执行代码的流程。首先，我建议你在浏览器中打开一个空白的面白，我一般会在地址栏中通过输入`about:blank`完成。然后确保你打开了控制台。
 
-Now, type this code and see how it runs:
+现在，输入这些代码，看看它会如何运行：
 
 ```js
 a = 21;
@@ -105,80 +105,74 @@ b = a * 2;
 console.log( b );
 ```
 
-Typing the preceding code into the console in Chrome should produce something like the following:
+在chrome 浏览器中输入上述的代码，会产生如下所示的结果：
 
 <img src="fig1.png" width="500">
 
-Go on, try it. The best way to learn programming is to start coding!
+加油，尝试吧。学习编程最好的方式就是开始码代码！
+### 输出
 
-### Output
+在上面的代码片段中，我们使用了`console.log(..)`。让我们来稍微看一下那几行代码到底是什么。
 
-In the previous code snippet, we used `console.log(..)`. Briefly, let's look at what that line of code is all about.
+或许你已经猜到了，那就是我们在开发者控制台下面打印文本的方式。我们要解释一下那一句的两个特征。
 
-You may have guessed, but that's exactly how we print text (aka *output* to the user) in the developer console. There are two characteristics of that statement that we should explain.
+首先，`log( b )` 部分是一个函数调用。我们把`b` 传入到那个函数当中，并把它的值打印到控制台中。
 
-First, the `log( b )` part is referred to as a function call (see "Functions"). What's happening is we're handing the `b` variable to that function, which asks it to take the value of `b` and print it to the console.
+第二，`console.` 部分是`log(..)` 所属的一个对象引用。 第2章会涵盖对象和属性的内容。
 
-Second, the `console.` part is an object reference where the `log(..)` function is located. We cover objects and their properties in more detail in Chapter 2.
-
-Another way of creating output that you can see is to run an `alert(..)` statement. For example:
-
+另外一种创建可见输出的方式是运行`alert(..)`，例如：
 ```js
 alert( b );
 ```
 
-If you run that, you'll notice that instead of printing the output to the console, it shows a popup "OK" box with the contents of the `b` variable. However, using `console.log(..)` is generally going to make learning about coding and running your programs in the console easier than using `alert(..)`, because you can output many values at once without interrupting the browser interface.
+运行，你会发现它不是在console 下面输出内容，而是弹出一个带有“OK”按钮的提示框，里面会显示b 变量的值。`console.log(..)`在学习编码和运行程序时使用起来比`alert(..)`更方便，因为它可以一次打印多个值，而不会影响浏览器界面展示。
 
-For this book, we'll use `console.log(..)` for output.
+这本书我们使用 `console.log(..)` 来输出。
 
-### Input
+### 输入
 
-While we're discussing output, you may also wonder about *input* (i.e., receiving information from the user).
 
-The most common way that happens is for the HTML page to show form elements (like text boxes) to a user that they can type into, and then using JS to read those values into your program's variables.
+我们讨论输出的时候，你是不是对输入（从用户那儿接收信息）也充满好奇？
 
-But there's an easier way to get input for simple learning and demonstration purposes such as what you'll be doing throughout this book. Use the `prompt(..)` function:
+最常见的方式是在HTML页面上有一组表单元素，比如文本框，用户可以进行输入，然后使用JS 来读这些输入，并传给程序变量。
 
+不过，对于简单的学习和展示，这本书中我们有一种更简便的方式，那就是使用`prompt(..)`函数：
 ```js
 age = prompt( "Please tell me your age:" );
 
 console.log( age );
 ```
 
-As you may have guessed, the message you pass to `prompt(..)` -- in this case, `"Please tell me your age:"` -- is printed into the popup.
+你或许已经猜到了，这个实例中传给`prompt(..)`的信息`"Please tell me your age:"` 会被打印在弹出框中。
 
-This should look similar to the following:
-
+结果看起来会像这样：
 <img src="fig2.png" width="500">
 
-Once you submit the input text by clicking "OK," you'll observe that the value you typed is stored in the `age` variable, which we then *output* with `console.log(..)`:
-
+当你点击“OK”的时候，输入的文本就被提交了，并被存储在`age` 变量中，然后被`console.log(..)`输出：
 <img src="fig3.png" width="500">
 
-To keep things simple while we're learning basic programming concepts, the examples in this book will not require input. But now that you've seen how to use `prompt(..)`, if you want to challenge yourself you can try to use input in your explorations of the examples.
+为了使学习基本编程概念的时候尽量保持简单，我们这本书中的例子不需要输入。但我们已经学会了如何使用`prompt(..)`，所以如果你想挑战自己，你可以在探索实例的时候尝试使用输入。
+## 运算符
 
-## Operators
+运算符决定了在变量和值之间执行怎样的运算。我们已经看到过两种JavaScript 的运算符了，`=` 和 `*`。
 
-Operators are how we perform actions on variables and values. We've already seen two JavaScript operators, the `=` and the `*`.
+`*` 执行的是数学乘法运算，是不是很简单？
 
-The `*` operator performs mathematic multiplication. Simple enough, right?
+`=` 等号运算符用于赋值，我们先把右边的值（源值）计算出来，然后赋给左边定义好的变量（目标变量）上。
+**警告：** 赋值看起来像是个奇怪的逆序。可能一些语言会把 `a = 42`反过来，把源放在左边目标变量放在右边，如 `42 -> a` （JavaScript 是不合法的）。很不幸，`a = 42` 的顺序不可变，这种形式在现代编程语言中特别流行，如果你感觉不自然，那么你只能花点时间适应这种顺序并习以为常了。
 
-The `=` equals operator is used for *assignment* -- we first calculate the value on the *right-hand side* (source value) of the `=` and then put it into the variable that we specify on the *left-hand side* (target variable).
-
-**Warning:** This may seem like a strange reverse order to specify assignment. Instead of `a = 42`, some might prefer to flip the order so the source value is on the left and the target variable is on the right, like `42 -> a` (this is not valid JavaScript!). Unfortunately, the `a = 42` ordered form, and similar variations, is quite prevalent in modern programming languages. If it feels unnatural, just spend some time rehearsing that ordering in your mind to get accustomed to it.
-
-Consider:
+看看下面：
 
 ```js
 a = 2;
 b = a + 1;
 ```
 
-Here, we assign the `2` value to the `a` variable. Then, we get the value of the `a` variable (still `2`), add `1` to it resulting in the value `3`, then store that value in the `b` variable.
+把`2`赋给变量`a`。然后我们把a 变量的值加1 得到的结果3 存储到变量b 中。
 
-While not technically an operator, you'll need the keyword `var` in every program, as it's the primary way you *declare* (aka *create*) *var*iables (see "Variables").
+程序中会用到一个非运算符的关键字`var`声明变量。
 
-You should always declare the variable by name before you use it. But you only need to declare a variable once for each *scope* (see "Scope"); it can be used as many times after that as needed. For example:
+变量在使用之前需要先声明，但在一个作用域中只需要声明一次，然后在作用域内可以多次使用，例如：
 
 ```js
 var a = 20;
@@ -189,46 +183,47 @@ a = a * 2;
 console.log( a );	// 42
 ```
 
-Here are some of the most common operators in JavaScript:
+以下是JavaScrip 中最常用的一些运算符：
 
-* Assignment: `=` as in `a = 2`.
-* Math: `+` (addition), `-` (subtraction), `*` (multiplication), and `/` (division), as in `a * 3`.
-* Compound Assignment: `+=`, `-=`, `*=`, and `/=` are compound operators that combine a math operation with assignment, as in `a += 2` (same as `a = a + 2`).
-* Increment/Decrement: `++` (increment), `--` (decrement), as in `a++` (similar to `a = a + 1`).
-* Object Property Access: `.` as in `console.log()`.
+* 赋值： `=` 如 `a = 2`.
+* 数学： `+` （加法）， `-` （减法）， `*` 乘法， 和 `/` （除法）如 `a * 3`.
+* 复合运算： `+=`， `-=`， `*=`， 和 `/=` 称为复合运算符，它把数学运算符和赋值结合起来使用，如 `a += 2` 等同于 `a = a + 2`。
+* 自增、自减： `++` （自增）， `--` （自减）如 `a++` 等同于 `a = a + 1`。
+* 获取对象属性： `.`如 `console.log()`。
 
-   Objects are values that hold other values at specific named locations called properties. `obj.a` means an object value called `obj` with a property of the name `a`. Properties can alternatively be accessed as `obj["a"]`. See Chapter 2.
-* Equality: `==` (loose-equals), `===` (strict-equals), `!=` (loose not-equals), `!==` (strict not-equals), as in `a == b`.
+   `obj.a` 表示`obj`对象有一个属性名叫 `a`。属性也可以通过`obj["a"]`获取值，参见第二章。
+   
+* 相等： `==`（相等）， `===` （恒等）， `!=`（不相等） `!==` （不恒等） 如`a == b`.
 
-   See "Values & Types" and Chapter 2.
-* Comparison: `<` (less than), `>` (greater than), `<=` (less than or loose-equals), `>=` (greater than or loose-equals), as in `a <= b`.
+   参见第二章的“值与类型”。
+* 比较运算符： `<` （小于）， `>` （大于）， `<=` （小于等于）， `>=` （大于等于）如 `a <= b`.
 
-   See "Values & Types" and Chapter 2.
-* Logical: `&&` (and), `||` (or), as in `a || b` that selects either `a` *or* `b`.
+    参见第二章的“值与类型”。
+* 逻辑运算符：`&&` （且） `||` （或），如 `a || b` 表示 `a` 或 `b`.
 
-   These operators are used to express compound conditionals (see "Conditionals"), like if either `a` *or* `b` is true.
+这些运算符在表示复合运算条件的时候常用到（参见条件语句），比如判断`a` 或 `b`是否为真。
 
-**Note:** For much more detail, and coverage of operators not mentioned here, see the Mozilla Developer Network (MDN)'s "Expressions and Operators" (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators).
+**说明：** MDN的["Expressions and Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators) 中会有更多关于运算符的详细信息，以及这里没有提到的运算符。
 
 ## 值和类型
 
-If you ask an employee at a phone store how much a certain phone costs, and they say "ninety-nine, ninety-nine" (i.e., $99.99), they're giving you an actual numeric dollar figure that represents what you'll need to pay (plus taxes) to buy it. If you want to buy two of those phones, you can easily do the mental math to double that value to get $199.98 for your base cost.
+如果你问一个手机店员一个手机多少钱，他们说99.99美金，他们会给你一个实际的含税价格表示你要买一部手机需要支付的钱。如果你想买两部，那么你马上心算出来两部手机的基本费用是199.98美金。
 
-If that same employee picks up another similar phone but says it's "free" (perhaps with air quotes), they're not giving you a number, but instead another kind of representation of your expected cost ($0.00) -- the word "free."
+如果他再拿起另外一款手机告诉你这部手机“免费”，他没有给你一个确切的数字，“免费”的用另外一种表达就是$0.00。
 
-When you later ask if the phone includes a charger, that answer could only have been either "yes" or "no."
+然后你问这部手机是否包含充电器，得到的回答只能是“是”或者“否”。
 
-In very similar ways, when you express values in a program, you choose different representations for those values based on what you plan to do with them.
+类似的，在程序中要根据你的目的选择不同的方式表达值。
 
-These different representations for values are called *types* in programming terminology. JavaScript has built-in types for each of these so called *primitive* values:
+这些不同的值表达在编程术语中就叫“类型”。JavaScript 为这些原始值提供了内建的类型。
 
-* When you need to do math, you want a `number`.
-* When you need to print a value on the screen, you need a `string` (one or more characters, words, sentences).
-* When you need to make a decision in your program, you need a `boolean` (`true` or `false`).
+* 当你想做数学预算的时候你需要一个`number` 类型；
+* 当你想打印值在屏幕上面，你需要一个`string`类型（一两个字母，单词，或者句子）；
+* 当你想做决定的时候，你需要一个`boolean` （`true` 或 `false`）。
 
-Values that are included directly in the source code are called *literals*. `string` literals are surrounded by double quotes `"..."` or single quotes (`'...'`) -- the only difference is stylistic preference. `number` and `boolean` literals are just presented as is (i.e., `42`, `true`, etc.).
+源代码中直接包含的内容叫“字面量”。`string` 字面量用双引号或者单引号引起来 -- 唯一的区别是格式偏好。`number`和`boolean` 字面量就表示它的真是内容。
 
-Consider:
+看下面：
 
 ```js
 "I am a string";
@@ -240,14 +235,13 @@ true;
 false;
 ```
 
-Beyond `string`/`number`/`boolean` value types, it's common for programming languages to provide *arrays*, *objects*, *functions*, and more. We'll cover much more about values and types throughout this chapter and the next.
+除了 `string`/`number`/`boolean` 值类型，通常编程语言也提供了 *arrays*，*objects*，*functions*以及其他。本章和接下来的章节会涉及到更多的值和类型的内容。
 
 ### 类型转换
 
-If you have a `number` but need to print it on the screen, you need to convert the value to a `string`, and in JavaScript this conversion is called "coercion." Similarly, if someone enters a series of numeric characters into a form on an ecommerce page, that's a `string`, but if you need to then use that value to do math operations, you need to *coerce* it to a `number`.
+假设你有一个`number`类型的值，但是想把它打印在屏幕上，你需要把它转化成`string`，JavaScript 中的这种转换叫“强制转换”。同样，如果有人在一个电子商务网站上的表单中输入了一系列数字字符，它是y一个`string`类型，但是你想在数学运算中使用这个值，你需要把它强制转换成`number`类型。
 
-JavaScript provides several different facilities for forcibly coercing between *types*. For example:
-
+JavaScript 提供了多种方法进行类型间的强制转换，比如：
 ```js
 var a = "42";
 var b = Number( a );
@@ -256,21 +250,21 @@ console.log( a );	// "42"
 console.log( b );	// 42
 ```
 
-Using `Number(..)` (a built-in function) as shown is an *explicit* coercion from any other type to the `number` type. That should be pretty straightforward.
+`Number(..)`（一个内置的函数）显式地将其他类型转换成`number`类型，那样最直接。
 
-But a controversial topic is what happens when you try to compare two values that are not already of the same type, which would require *implicit* coercion.
+但是在比较两个不同类型的值时，那种方式就有争议了，这个时候需要隐式转换。
 
-When comparing the string `"99.99"` to the number `99.99`, most people would agree they are equivalent. But they're not exactly the same, are they? It's the same value in two different representations, two different *types*. You could say they're "loosely equal," couldn't you?
+字符串`"99.99"`和数值`99.99`比较，大部分人都觉得他们应该相等。但是他们并不是完全相等，对吧？这是同一个值的两种不同的表达方式，两个不同的类型。你也可以说他们相等，是吧？
 
-To help you out in these common situations, JavaScript will sometimes kick in and *implicitly* coerce values to the matching types.
+为了帮你弄清楚这种类似的情况，JavaScript 有时候为了类型匹配需要隐式转换。
 
-So if you use the `==` loose equals operator to make the comparison `"99.99" == 99.99`, JavaScript will convert the left-hand side `"99.99"` to its `number` equivalent `99.99`. The comparison then becomes `99.99 == 99.99`, which is of course `true`.
+如果你使用`==` 对`"99.99" == 99.99`进行比较，JavaScript 会把左边的`"99.99"` 转换成数字类型，也就是`99.99`，然后就变成了`99.99 == 99.99`，结果为true。
 
-While designed to help you, implicit coercion can create confusion if you haven't taken the time to learn the rules that govern its behavior. Most JS developers never have, so the common feeling is that implicit coercion is confusing and harms programs with unexpected bugs, and should thus be avoided. It's even sometimes called a flaw in the design of the language.
+如果你尚未花时间掌握隐式转换的操作规则，很容易困惑，大部分的JS 开发者并未掌握，因此大多数都感觉隐式转换令人困惑，会引起程序出现意想不到的bug，所以应该尽量避免。这甚至被认为是这个语言设计的一个缺陷。
 
-However, implicit coercion is a mechanism that *can be learned*, and moreover *should be learned* by anyone wishing to take JavaScript programming seriously. Not only is it not confusing once you learn the rules, it can actually make your programs better! The effort is well worth it.
+然而，隐式转换机制是完全可以掌握的，希望认真学习JavaScript 开发的人甚至应该去掌握。一旦你掌握了规则，你不仅不会困惑，而且会写出更好的程序。努力是值得的。
 
-**Note:** For more information on coercion, see Chapter 2 of this title and Chapter 4 of the *Types & Grammar* title of this series.
+**说明：** 强制转换的话题，会在第二章及第四章中的“类型和语法”中有更多的讨论。 
 
 ## 代码注释
 
