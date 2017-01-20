@@ -268,25 +268,20 @@ console.log( b );	// 42
 
 ## 代码注释
 
-The phone store employee might jot down some notes on the features of a newly released phone or on the new plans her company offers. These notes are only for the employee -- they're not for customers to read. Nevertheless, these notes help the employee do her job better by documenting the hows and whys of what she should tell customers.
+手机店员可能会草草写下一些关于一款最新发布的手机的特性或者公司的新计划的笔记。这些笔记只能给内部员工看，不能给客户看的。不过这些笔记以文档的形式描述他们要跟客户说什么，怎么说，为什么，能帮助员工工作更出色。写代码不仅仅是为计算机而写，这是我们学到的最重要的一课。写代码一半是为了编译器通过，一半是写给开发者自己看的。
 
-One of the most important lessons you can learn about writing code is that it's not just for the computer. Code is every bit as much, if not more, for the developer as it is for the compiler.
+你的计算机只关心机器编码，编译之后的结果，一系列的0 和1。你可能写了无数程序生成0 和1 序列。你该怎么写程序不仅关系到你自己，也关系到你的其他团队成员，甚至你自己的未来。你该始终坚持不仅仅是写出能正常工作的代码，而是有意义的程序。使用好的变量名和函数名会让你在这条路上走的长远。
 
-Your computer only cares about machine code, a series of binary 0s and 1s, that comes from *compilation*. There's a nearly infinite number of programs you could write that yield the same series of 0s and 1s. The choices you make about how to write your program matter -- not only to you, but to your other team members and even to your future self.
+另外一个重要的部分就是注释。你的程序中插入了大量的纯文本用来向人解释描述。编译器会忽略这些注释。
 
-You should strive not just to write programs that work correctly, but programs that make sense when examined. You can go a long way in that effort by choosing good names for your variables (see "Variables") and functions (see "Functions").
+关于怎么写好注释有很多观点，我们无法绝对定义全球通用的规则，但是下面一些观察和指南对于写好注释非常有用：
 
-But another important part is code comments. These are bits of text in your program that are inserted purely to explain things to a human. The interpreter/compiler will always ignore these comments.
+* 没有注释的代码是不完美的；
+* 过多的注释（一行代码一行注释）可能暗示这段代码的质量不高；
+* 注释应该更多的解释“为什么”而不是“是什么”，也可以在特别复杂的地方解释“怎么做”。
 
-There are lots of opinions on what makes well-commented code; we can't really define absolute universal rules. But some observations and guidelines are quite useful:
-
-* Code without comments is suboptimal.
-* Too many comments (one per line, for example) is probably a sign of poorly written code.
-* Comments should explain *why*, not *what*. They can optionally explain *how* if that's particularly confusing.
-
-In JavaScript, there are two types of comments possible: a single-line comment and a multiline comment.
-
-Consider:
+JavaScript有两种类型的注释：单行注释和多行注释。
+参见：
 
 ```js
 // This is a single-line comment
@@ -297,18 +292,15 @@ Consider:
                       */
 ```
 
-The `//` single-line comment is appropriate if you're going to put a comment right above a single statement, or even at the end of a line. Everything on the line after the `//` is treated as the comment (and thus ignored by the compiler), all the way to the end of the line. There's no restriction to what can appear inside a single-line comment.
-
-Consider:
+单行注释`//`适合在语句的正上方或者行尾写注释。`//`　后面直到行尾的内容都被视为注释（因此会被编译器忽略）。单行注释的内容不做限制。
+参见：
 
 ```js
 var a = 42;		// 42 is the meaning of life
 ```
+`/* .. */`多行注释适合需要对多行代码进行解释的情况。
 
-The `/* .. */` multiline comment is appropriate if you have several lines worth of explanation to make in your comment.
-
-Here's a common usage of multiline comments:
-
+这是多行注释常用的使用方法：
 ```js
 /* The following value is used because
    it has been shown that it answers
@@ -316,31 +308,30 @@ Here's a common usage of multiline comments:
 var a = 42;
 ```
 
-It can also appear anywhere on a line, even in the middle of a line, because the `*/` ends it. For example:
-
+它也可以出现在一行代码中的任意位置，甚至在代码的中间，因为有结束标志`*/`。例如：
 ```js
 var a = /* arbitrary value */ 42;
 
 console.log( a );	// 42
 ```
 
-The only thing that cannot appear inside a multiline comment is a `*/`, because that would be interpreted to end the comment.
+多行注释中唯一不能出现的就是`*/`，因为它会被视作多行注释的结束符。　
 
-You will definitely want to begin your learning of programming by starting off with the habit of commenting code. Throughout the rest of this chapter, you'll see I use comments to explain things, so do the same in your own practice. Trust me, everyone who reads your code will thank you!
+你一定要养成写代码注释的习惯开始你的编程学习。这一章剩下的内容，你会看到我使用注释来解释一些东西，你自己的练习中你也要这么做。相信我，看你代码的人会感激你的。
 
 ## 变量
 
-Most useful programs need to track a value as it changes over the course of the program, undergoing different operations as called for by your program's intended tasks.
+多数有用的程序中，特定的任务会调用某个值并对它进行个各种各样的操作，通常我们需要跟踪这个程序流程中会随时发生变化的值。
 
-The easiest way to go about that in your program is to assign a value to a symbolic container, called a *variable* -- so called because the value in this container can *vary* over time as needed.
+最简单的方式是将这个放到一个有标志的容器中去，就是所谓的“变量”。之所以叫变量是因为这个容器中的值会随着时间需要发生变化。
 
-In some programming languages, you declare a variable (container) to hold a specific type of value, such as `number` or `string`. *Static typing*, otherwise known as *type enforcement*, is typically cited as a benefit for program correctness by preventing unintended value conversions.
+在一些编程语言中，定义变量用来存储特定类型的值，比如数字类型，字符串类型，静态类型也叫类型转换，他的好处是保证程序的正确性，避免了值转换时发生的潜在错误。
 
-Other languages emphasize types for values instead of variables. *Weak typing*, otherwise known as *dynamic typing*, allows a variable to hold any type of value at any time. It's typically cited as a benefit for program flexibility by allowing a single variable to represent a value no matter what type form that value may take at any given moment in the program's logic flow.
+其他的语言更关注值的类型而不是变量的类型。弱类型，也叫动态类型，运行一个变量在任何时候拥有任何类型的值。它的好处是增加了程序的伸缩性，在程序逻辑流中，不管何时以什么类型生成的值都能用同一个变量表示。
 
-JavaScript uses the latter approach, *dynamic typing*, meaning variables can hold values of any *type* without any *type* enforcement.
+JavaScript 使用后面这种方式：动态类型，意味着变量可以不需要进行类型强制转换，保存任何类型的值。
 
-As mentioned earlier, we declare a variable using the `var` statement -- notice there's no other *type* information in the declaration. Consider this simple program:
+如之前提到，声明变量用var 语句 -- 声明中没有其他类型信息。参见这个简单的额实例：
 
 ```js
 var amount = 99.99;
@@ -356,23 +347,22 @@ amount = "$" + String( amount );
 console.log( amount );		// "$199.98"
 ```
 
-The `amount` variable starts out holding the number `99.99`, and then holds the `number` result of `amount * 2`, which is `199.98`.
+变量 `amount` 开始的值是`99.99`，然后变为 `amount * 2` 的结果，也就是 `199.98`。
 
-The first `console.log(..)` command has to *implicitly* coerce that `number` value to a `string` to print it out.
+最开始的 `console.log(..)` 命令必须隐式转换数字类型为字符串类型，然后打印出来。
 
-Then the statement `amount = "$" + String(amount)` *explicitly* coerces the `199.98` value to a `string` and adds a `"$"` character to the beginning. At this point, `amount` now holds the `string` value `"$199.98"`, so the second `console.log(..)` statement doesn't need to do any coercion to print it out.
+Then the statement `amount = "$" + String(amount)` 语句显式地将值 `199.98` 转换成 `string` 类型，然后在开头加上了字符`"$"`。这时候，`amount` 保存的是 `string` 类型的值 `"$199.98"`，因此第二次的`console.log(..)`语句不需要做任何转换就直接打印出来。
 
-JavaScript developers will note the flexibility of using the `amount` variable for each of the `99.99`, `199.98`, and the `"$199.98"` values. Static-typing enthusiasts would prefer a separate variable like `amountStr` to hold the final `"$199.98"` representation of the value, because it's a different type.
+JavaScript 的开发者会注意到`amount`变量既能表示`99.99`，`199.98`也能表示`"$199.98"` 的这种伸缩性。静态类型的狂热者会使用一个单独的类型比如`amountStr` 来表示最后的值`"$199.98"`，因为它的类型变了。
 
-Either way, you'll note that `amount` holds a running value that changes over the course of the program, illustrating the primary purpose of variables: managing program *state*.
+另外，`amount`的值在程序过程中是动态变化的，印证了变量最初的目的：管理程序状态。
 
-In other words, *state* is tracking the changes to values as your program runs.
+换句话说，状态能够捕捉程序运行过程中值发生的变化。
 
-Another common usage of variables is for centralizing value setting. This is more typically called *constants*, when you declare a variable with a value and intend for that value to *not change* throughout the program.
+另外一种变量的用法通常是集中设置值，也就是设置常量，声明变量的时候赋上初始值，项目过程中它的值都不发生变化。这些常量通常放在程序的最上面，以便能够在需要改变它的值的时候快速地到最上面去修改。我们约定，常量一般用大写字母表示，单词之间用下划线`_`连接。
 
-You declare these *constants*, often at the top of a program, so that it's convenient for you to have one place to go to alter a value if you need to. By convention, JavaScript variables as constants are usually capitalized, with underscores `_` between multiple words.
+下面有一个小实例：
 
-Here's a silly example:
 
 ```js
 var TAX_RATE = 0.08;	// 8% sales tax
@@ -387,11 +377,11 @@ console.log( amount );				// 215.9784
 console.log( amount.toFixed( 2 ) );	// "215.98"
 ```
 
-**Note:** Similar to how `console.log(..)` is a function `log(..)` accessed as an object property on the `console` value, `toFixed(..)` here is a function that can be accessed on `number` values. JavaScript `number`s aren't automatically formatted for dollars -- the engine doesn't know what your intent is and there's no type for currency. `toFixed(..)` lets us specify how many decimal places we'd like the `number` rounded to, and it produces the `string` as necessary.
+**说明** 正如`console.log(..)` 的函数`log(..)` 能够以 console 对象属性的形式调用一样，这里的`toFixed(..)`函数能通过数字类型值访问。JavaScript值 的数字类型值不会自动的以美元格式化，引擎不知道你的目的，也没有提供货币的类型。`toFixed(..)` 允许我们确定对十进制数值保留几位小数，必要时转换成字符串类型。
 
-The `TAX_RATE` variable is only *constant* by convention -- there's nothing special in this program that prevents it from being changed. But if the city raises the sales tax rate to 9%, we can still easily update our program by setting the `TAX_RATE` assigned value to `0.09` in one place, instead of finding many occurrences of the value `0.08` strewn throughout the program and updating all of them.
+`TAX_RATE` 变量按约定是常量 -- 程序中没有防止它发生变化的特殊机制。但是如果这个城市的消费税上涨到9%，我们可以简单地通过修改`TAX_RATE` 的赋值语句，将其设置成`0.09`， 而不是在程序的多个地方出现`0.08`，然后需要更新时到将所有的`0.08`改成`0.09`。
 
-The newest version of JavaScript at the time of this writing (commonly called "ES6") includes a new way to declare *constants*, by using `const` instead of `var`:
+最新版本的JavaScript （ES6）引入了一种新的声明常量的方式：使用`const` 替代 `var`：
 
 ```js
 // as of ES6:
@@ -401,18 +391,17 @@ var amount = 99.99;
 
 // ..
 ```
+常量就像值不变的变量一样有用，除此之外，常量可以避免在初始设置之外的其他地方修改。如果在第一次声明之后将`TAX_RATE`设置成其他值，程序是不允许这种修改的。（在严格模式，会报错--参见第二章的“严格模式”）。
 
-Constants are useful just like variables with unchanged values, except that constants also prevent accidentally changing value somewhere else after the initial setting. If you tried to assign any different value to `TAX_RATE` after that first declaration, your program would reject the change (and in strict mode, fail with an error -- see "Strict Mode" in Chapter 2).
+这种防止错误的方式类似静态类型的类型强制转换，所以你可以看到为什么静态类型在其他语言中的魅力。
 
-By the way, that kind of "protection" against mistakes is similar to the static-typing type enforcement, so you can see why static types in other languages can be attractive!
+**说明** 更多关于不同类型的变量使用，参见这一系列标题为 *类型与语法* 的部分。
 
-**Note:** For more information about how different values in variables can be used in your programs, see the *Types & Grammar* title of this series.
+## 代码块
 
-## Blocks
+如果你要买新手机，手机店员必须要仔细检查一系列步骤来完成下单流程。
 
-The phone store employee must go through a series of steps to complete the checkout as you buy your new phone.
-
-Similarly, in code we often need to group a series of statements together, which we often call a *block*. In JavaScript, a block is defined by wrapping one or more statements inside a curly-brace pair `{ .. }`. Consider:
+类似的，代码中我们要把一系列的代码语句成组放置，这样的一组代码称为“代码块”。JavaScript 中，一个代码块通常是在花括号`{ .. }` 中包含多个语句。参见：
 
 ```js
 var amount = 99.99;
@@ -424,7 +413,7 @@ var amount = 99.99;
 }
 ```
 
-This kind of standalone `{ .. }` general block is valid, but isn't as commonly seen in JS programs. Typically, blocks are attached to some other control statement, such as an `if` statement (see "Conditionals") or a loop (see "Loops"). For example:
+这种独立的 `{ .. }` 代码块是有效的，但是在JS程序中并不常见。通常，代码块嵌套在其他一些控制语句中，比如`if`语句或者循环语句。如：
 
 ```js
 var amount = 99.99;
@@ -435,18 +424,17 @@ if (amount > 10) {			// <-- block attached to `if`
 	console.log( amount );	// 199.98
 }
 ```
+下一个章节，我们会解释if 语句，`{ .. }`代码块中两个语句时跟在`if (amount > 10)` 之后的，代码块中的语句只有在if 条件语句成立时执行。
 
-We'll explain `if` statements in the next section, but as you can see, the `{ .. }` block with its two statements is attached to `if (amount > 10)`; the statements inside the block will only be processed if the conditional passes.
+**说明** 不像如`console.log(amount);` 的其他语句，代码块不需要冒号`;`作为结束符。
 
-**Note:** Unlike most other statements like `console.log(amount);`, a block statement does not need a semicolon (`;`) to conclude it.
+## 条件语句
 
-## Conditionals
+“你要再额外购买一个屏保膜吗，只要9.99美元哦？” 热心的手机店员问你。你可能先要看看你钱包或者银行账户的状态来回答那个问题。但是明显，这只是一个是或者否的问题。
 
-"Do you want to add on the extra screen protectors to your purchase, for $9.99?" The helpful phone store employee has asked you to make a decision. And you may need to first consult the current *state* of your wallet or bank account to answer that question. But obviously, this is just a simple "yes or no" question.
+我们程序中有很多表示条件语句的方式。
 
-There are quite a few ways we can express *conditionals* (aka decisions) in our programs.
-
-The most common one is the `if` statement. Essentially, you're saying, "*If* this condition is true, do the following...". For example:
+最常用的是if 条件语句。“If 这个条件成立，那么就这么这么做”。例如：
 
 ```js
 var bank_balance = 302.13;
@@ -457,9 +445,9 @@ if (amount < bank_balance) {
 }
 ```
 
-The `if` statement requires an expression in between the parentheses `( )` that can be treated as either `true` or `false`. In this program, we provided the expression `amount < bank_balance`, which indeed will either evaluate to `true` or `false` depending on the amount in the `bank_balance` variable.
+`if` 语句需要在`( )`中间放置结果为`true` 或 `false` 表达式。 这个程序中的表达式是 `amount < bank_balance`，它的结果是 `true` 还是 `false` 取决于`bank_balance`变量的值。
 
-You can even provide an alternative if the condition isn't true, called an `else` clause. Consider:
+你还可以提供另外一个选择如果条件不成立，成为“else” 从句。参见：
 
 ```js
 const ACCESSORY_PRICE = 9.99;
@@ -480,25 +468,25 @@ else {
 }
 ```
 
-Here, if `amount < bank_balance` is `true`, we'll print out `"I'll take the accessory!"` and add the `9.99` to our `amount` variable. Otherwise, the `else` clause says we'll just politely respond with `"No, thanks."` and leave `amount` unchanged.
+如果 `amount < bank_balance` 的值为 `true`，将会打印 `"I'll take the accessory!"` ，并且把 `9.99`加到变量`amount`上去。否则的话 `else` 从句只会礼貌的打印出`"No, thanks."`，并且保持 `amount`变量的值不变。
 
-As we discussed in "Values & Types" earlier, values that aren't already of an expected type are often coerced to that type. The `if` statement expects a `boolean`, but if you pass it something that's not already `boolean`, coercion will occur.
+之前提及的“值与类型”，非预期的值类型会被强制转化成预期的类型。if 语句需要一个布尔类型值，但是如果你传入一个非布尔类型值，那么就会被强制转化成布尔值。
 
-JavaScript defines a list of specific values that are considered "falsy" because when coerced to a `boolean`, they become `false` -- these include values like `0` and `""`. Any other value not on the "falsy" list is automatically "truthy" -- when coerced to a `boolean` they become `true`. Truthy values include things like `99.99` and `"free"`. See "Truthy & Falsy" in Chapter 2 for more information.
+JavaScript 定义了一系列视为false 的值，当发生强制转换时，这些值自动转化成false，如 `0`和`""`。另外一些自动转化成true 类型，比如`99.99` 和 `"free"`。更多信息参见第二章“是与非”。
 
-*Conditionals* exist in other forms besides the `if`. For example, the `switch` statement can be used as a shorthand for a series of `if..else` statements (see Chapter 2). Loops (see "Loops") use a *conditional* to determine if the loop should keep going or stop.
+条件语句除了`if`之外还有其他形式。例如，`switch`语句可以表示`if..else` 语句（参见第二章）。循环使用条件语句决定循环继续还是终止。
 
-**Note:** For deeper information about the coercions that can occur implicitly in the test expressions of *conditionals*, see Chapter 4 of the *Types & Grammar* title of this series.
+**说明** 关于测试表达式条件语句中隐式强制转化更深入的信息参见这一系列的“类型与语法”中第四章的内容。
 
-## Loops
+## 循环
 
-During busy times, there's a waiting list for customers who need to speak to the phone store employee. While there's still people on that list, she just needs to keep serving the next customer.
+忙时，顾客需要排队跟手机店员沟通。如果队伍中任然后等候的人，那么店员只需要继续为下一位顾客服务就好了。
 
-Repeating a set of actions until a certain condition fails -- in other words, repeating only while the condition holds -- is the job of programming loops; loops can take different forms, but they all satisfy this basic behavior.
+循环一系列操作直到某个特定条件失败，换句话说只要条件成立循环一直进行，这是编程中循环的工作。循环有多种形式，但是他们都满足基本这个基本的行为。
 
-A loop includes the test condition as well as a block (typically as `{ .. }`). Each time the loop block executes, that's called an *iteration*.
+循环包含测试条件和代码块。循环代码块每一次执行成为一次迭代。
 
-For example, the `while` loop and the `do..while` loop forms illustrate the concept of repeating a block of statements until a condition no longer evaluates to `true`:
+例如，`while`循环和`do..while`循环形式阐释了循环的概念，执行代码块语句直到条件不再为true。
 
 ```js
 while (numOfCustomers > 0) {
@@ -520,19 +508,18 @@ do {
 } while (numOfCustomers > 0);
 ```
 
-The only practical difference between these loops is whether the conditional is tested before the first iteration (`while`) or after the first iteration (`do..while`).
+这两个循环的实际区别只有一个，条件语句时在第一个迭代之前（while）还是之后(do..while)检测。
 
-In either form, if the conditional tests as `false`, the next iteration will not run. That means if the condition is initially `false`, a `while` loop will never run, but a `do..while` loop will run just the first time.
+不管哪种方式，只要条件语句测试结果为false，那么下一个迭代就不会执行。如果条件一开始就被设置为false，那么while循环永远不会执行，但是`do..while`会执行一次。
 
-Sometimes you are looping for the intended purpose of counting a certain set of numbers, like from `0` to `9` (ten numbers). You can do that by setting a loop iteration variable like `i` at value `0` and incrementing it by `1` each iteration.
+有时有些循环的目的是对一组数据进行计数，比如从0 到9（10个数）。你可以设置循环迭代变量比如i=0， 然后每次循环逐次加1。
 
-**Warning:** For a variety of historical reasons, programming languages almost always count things in a zero-based fashion, meaning starting with `0` instead of `1`. If you're not familiar with that mode of thinking, it can be quite confusing at first. Take some time to practice counting starting with `0` to become more comfortable with it!
+**提示** 由于一系列历史原因，编程语言总是从0 而不是从1 开始计数。如果你不熟练这种思维模式，刚开始会特别困扰。花点时间练习从 0 开始计数的方式，直到你习以为然。
 
-The conditional is tested on each iteration, much as if there is an implied `if` statement inside the loop.
+每次迭代中条件语句都被测试一次，就像循环中隐藏了一个if 语句。
 
-We can use JavaScript's `break` statement to stop a loop. Also, we can observe that it's awfully easy to create a loop that would otherwise run forever without a `break`ing mechanism.
-
-Let's illustrate:
+我们可以使用`break`语句来终止循环，也很容易一不小心创建了一个没有终止机制永远执行的循环。
+我们来演示一下：
 
 ```js
 var i = 0;
@@ -550,9 +537,9 @@ while (true) {
 // 0 1 2 3 4 5 6 7 8 9
 ```
 
-**Warning:** This is not necessarily a practical form you'd want to use for your loops. It's presented here for illustration purposes only.
+**注意** 这并非是实际使用的形式，它只是用做演示之意。
 
-While a `while` (or `do..while`) can accomplish the task manually, there's another syntactic form called a `for` loop for just that purpose:
+如果while 或者do..while 能手动完成任务，有另外一种语法形式 for 循环就是为此而生的。
 
 ```js
 for (var i = 0; i <= 9; i = i + 1) {
@@ -561,19 +548,19 @@ for (var i = 0; i <= 9; i = i + 1) {
 // 0 1 2 3 4 5 6 7 8 9
 ```
 
-As you can see, in both cases the conditional `i <= 9` is `true` for the first 10 iterations (`i` of values `0` through `9`) of either loop form, but becomes `false` once `i` is value `10`.
+正如所见，它包含两种请款，当前10次(i 的值从0 一直到9 )迭代`i <= 9` 为`true`时的情况，以及当i 的值为10 时，条件立即变成了false的情况。 
 
-The `for` loop has three clauses: the initialization clause (`var i=0`), the conditional test clause (`i <= 9`), and the update clause (`i = i + 1`). So if you're going to do counting with your loop iterations, `for` is a more compact and often easier form to understand and write.
+for 循环有三个从句，初始化从句（var i=0），条件测试从句（i <= 9），和更新从句（i=i+1）。因此，如果你的循环迭代是做计数，那么for 会更精简并且更容易读懂和书写。
 
-There are other specialized loop forms that are intended to iterate over specific values, such as the properties of an object (see Chapter 2) where the implied conditional test is just whether all the properties have been processed. The "loop until a condition fails" concept holds no matter what the form of the loop.
+还有其他一些特定的循环方式，依次遍历特定的值，如对象的属性，隐含的条件测试就是是否所有的属性都被处理了。不管循环的形式是怎样的，“循环直到条件失败”的概念一直成立。
 
-## Functions
+## 函数
 
-The phone store employee probably doesn't carry around a calculator to figure out the taxes and final purchase amount. That's a task she needs to define once and reuse over and over again. Odds are, the company has a checkout register (computer, tablet, etc.) with those "functions" built in.
+手机店员可能并没有随身携带计算器来计算税费和最终的购买数量。那是一个需要规定一次并重复使用的任务。大概公司的结账处有这样一些功能来做这件事。
 
-Similarly, your program will almost certainly want to break up the code's tasks into reusable pieces, instead of repeatedly repeating yourself repetitiously (pun intended!). The way to do this is to define a `function`.
+类似的，你的程序会把代码的任务细分成很多可以重复使用的小块，而不是一遍又一遍的重复写这些任务代码。把代码拆成可重复使用的小块叫定义一个`function`。
 
-A function is generally a named section of code that can be "called" by name, and the code inside it will be run each time. Consider:
+一个函数通常会给一段代码去一个名字，可以通过调用这个名字执行函数中的代码。参见：
 
 ```js
 function printAmount() {
@@ -589,7 +576,7 @@ amount = amount * 2;
 printAmount(); // "199.98"
 ```
 
-Functions can optionally take arguments (aka parameters) -- values you pass in. And they can also optionally return a value back.
+函数可选择性的传入参数，也能选择性的返回值。
 
 ```js
 function printAmount(amt) {
@@ -608,11 +595,11 @@ amount = formatAmount();
 console.log( amount );			// "$99.99"
 ```
 
-The function `printAmount(..)` takes a parameter that we call `amt`. The function `formatAmount()` returns a value. Of course, you can also combine those two techniques in the same function.
+函数`printAmount(..)` 传入一个叫`amt`的参数。函数`formatAmount()` 返回一个值。当然你也可以在一个函数中同时使用传参和返回。
 
-Functions are often used for code that you plan to call multiple times, but they can also be useful just to organize related bits of code into named collections, even if you only plan to call them once.
+函数通常被用来组织会被调用多次的代码，也可以仅用作把相关联的一系列代码组织到一个命名集合中，就算你只打算调用一次这个函数。
 
-Consider:
+参见：
 
 ```js
 const TAX_RATE = 0.08;
@@ -632,15 +619,15 @@ amount = calculateFinalPurchaseAmount( amount );
 console.log( amount.toFixed( 2 ) );		// "107.99"
 ```
 
-Although `calculateFinalPurchaseAmount(..)` is only called once, organizing its behavior into a separate named function makes the code that uses its logic (the `amount = calculateFinal...` statement) cleaner. If the function had more statements in it, the benefits would be even more pronounced.
+尽管函数 `calculateFinalPurchaseAmount(..)` 只被调用了一次，把它的操作组织到一个单独命名函数中也能让程序的逻辑更加清晰。如果函数中有多个语句，那么函数的好处就更加不言而喻了。
 
-### Scope
+### 作用域
 
-If you ask the phone store employee for a phone model that her store doesn't carry, she will not be able to sell you the phone you want. She only has access to the phones in her store's inventory. You'll have to try another store to see if you can find the phone you're looking for.
+如果你问手机店员要这家店没有的一个手机模型，她可能无法把你想要的这个手机卖给你。她只能获取到她自家店仓库的物品。 你必须要尝试到其他店去看看是否能找到你要的手机。
 
-Programming has a term for this concept: *scope* (technically called *lexical scope*). In JavaScript, each function gets its own scope. Scope is basically a collection of variables as well as the rules for how those variables are accessed by name. Only code inside that function can access that function's *scoped* variables.
+编程对于这个概念有一个词，叫“作用域”，学术上称为“词法作用域”。在JavaScript中，每个函数只能获取它自身的作用域。 作用域主要是变量和这些变量是如何通过名字访问的规则的集合。只有在那个函数中的代码可以访问那个函数作用域内的变量。
 
-A variable name has to be unique within the same scope -- there can't be two different `a` variables sitting right next to each other. But the same variable name `a` could appear in different scopes.
+同一个作用域中变量名字必须唯一，一个作用域中不能同时存在两个不同的变量名`a`。但是同一个变量名可以出现在两个不同的作用域中。
 
 ```js
 function one() {
@@ -659,9 +646,7 @@ one();		// 1
 two();		// 2
 ```
 
-Also, a scope can be nested inside another scope, just like if a clown at a birthday party blows up one balloon inside another balloon. If one scope is nested inside another, code inside the innermost scope can access variables from either scope.
-
-Consider:
+同时，一个作用域中能嵌套在另一个作用域中，就像生日派对上的小丑能够在一个气球中再吹一个气球一样。如果一个作用被嵌套在另一个作用域中，在最里面作用域的代码可以访问外面的任何变量。参见：
 
 ```js
 function outer() {
@@ -683,11 +668,11 @@ function outer() {
 outer();
 ```
 
-Lexical scope rules say that code in one scope can access variables of either that scope or any scope outside of it.
+词法作用域规则描述了一个作用中的代码能够访问自身或者它外面的作用域中的变量。
 
-So, code inside the `inner()` function has access to both variables `a` and `b`, but code in `outer()` has access only to `a` -- it cannot access `b` because that variable is only inside `inner()`.
+因此，`inner()`函数中的代码可以同时访问 `a` 和 `b`，但是`outer()`函数中的代码只能访问`a`不能访问`b`，因为`b`的作用域在`inner()` 函数中。
 
-Recall this code snippet from earlier:
+再次回忆下之前的代码片段：
 
 ```js
 const TAX_RATE = 0.08;
@@ -701,28 +686,29 @@ function calculateFinalPurchaseAmount(amt) {
 }
 ```
 
-The `TAX_RATE` constant (variable) is accessible from inside the `calculateFinalPurchaseAmount(..)` function, even though we didn't pass it in, because of lexical scope.
+`TAX_RATE` 常量由于词法作用域可以被 `calculateFinalPurchaseAmount(..)` 函数内部访问，尽管我们并没有将它以参数的形式传进去。 
 
-**Note:** For more information about lexical scope, see the first three chapters of the *Scope & Closures* title of this series.
+**说明** 关于词法作用域更多的信息，参见这一系列“作用域和闭包”专题的前三章节。 
 
-## Practice
+## 练习
 
-There is absolutely no substitute for practice in learning programming. No amount of articulate writing on my part is alone going to make you a programmer.
+学习编程，练习明显是无可取代的。我写再多的代码表达也无法让你成为一个程序员。 
+ 
+记住，让我们尝试将这一章节学到的概念练习一遍。我会给出需求，你先尝试。然后再到后面的代码看看我是如果完成的。 
 
-With that in mind, let's try practicing some of the concepts we learned here in this chapter. I'll give the "requirements," and you try it first. Then consult the code listing below to see how I approached it.
+* 写一个程序来计算你购买的手机的总价。 你会不停的买手机（提示：loop）知道你银行账户中的钱用完。你也可以给每部手机买配件，只要你购买总额在你心理预期以内。
+* 在你计算购买总额之后，加入税费，然后打印出购买总额，适当的格式化。
+* 最后，检查总额和你银行账户余额，看看你是否能支付的起。
+* 你要将税费，手机价格，配件价格，开支上限设置成常量，还要将银行账户余额设置成变量。
+* 你要定义函数来计算税费，用户“$” 和两位小数格式化价格。
 
-* Write a program to calculate the total price of your phone purchase. You will keep purchasing phones (hint: loop!) until you run out of money in your bank account. You'll also buy accessories for each phone as long as your purchase amount is below your mental spending threshold.
-* After you've calculated your purchase amount, add in the tax, then print out the calculated purchase amount, properly formatted.
-* Finally, check the amount against your bank account balance to see if you can afford it or not.
-* You should set up some constants for the "tax rate," "phone price," "accessory price," and "spending threshold," as well as a variable for your "bank account balance.""
-* You should define functions for calculating the tax and for formatting the price with a "$" and rounding to two decimal places.
-* **Bonus Challenge:** Try to incorporate input into this program, perhaps with the `prompt(..)` covered in "Input" earlier. You may prompt the user for their bank account balance, for example. Have fun and be creative!
+* **附加题：** 尝试在程序中加入输入，可以是前文中提到的`prompt(..)`函数。比如，你可以提示用户输入他们的银行账户余额。享受创造的快乐吧。
+好吧，继续，动手吧。不要偷看下面我写的代码，直到你自己完成。
 
-OK, go ahead. Try it. Don't peek at my code listing until you've given it a shot yourself!
 
-**Note:** Because this is a JavaScript book, I'm obviously going to solve the practice exercise in JavaScript. But you can do it in another language for now if you feel more comfortable.
+**说明** 因为这是一本JavaScript 书，所以我当然会以JavaScript 语言来解决练习中的问题。但是如果你觉得更习惯的话你也可以先用其他语言完成。
 
-Here's my JavaScript solution for this exercise:
+这是我这道习题的解决方法：
 
 ```js
 const SPENDING_THRESHOLD = 200;
@@ -769,28 +755,28 @@ if (amount > bank_balance) {
 // You can't afford this purchase. :(
 ```
 
-**Note:** The simplest way to run this JavaScript program is to type it into the developer console of your nearest browser.
+**说明** 运行这些JavaScript 程序最简单直接的方式就是在浏览器的开发者控制台中输入这段代码。
 
-How did you do? It wouldn't hurt to try it again now that you've seen my code. And play around with changing some of the constants to see how the program runs with different values.
+你做的怎么样了？你已经看了我写的代码，不妨再试一次。尝试改变一些常量值看看程序运行以不同的值运行的结果。
 
-## Review
+## 巩固
 
-Learning programming doesn't have to be a complex and overwhelming process. There are just a few basic concepts you need to wrap your head around.
+学习编程不一定非得是很复杂很有压力的过程。你需要在脑海中记住一些基本的概念。 
 
-These act like building blocks. To build a tall tower, you start first by putting block on top of block on top of block. The same goes with programming. Here are some of the essential programming building blocks:
+这就像建房子。要建成一座高塔，你要在一块一块砖往上砌。编程也是一样的。这些是堆砌编程必备的砖块：
 
-* You need *operators* to perform actions on values.
-* You need values and *types* to perform different kinds of actions like math on `number`s or output with `string`s.
-* You need *variables* to store data (aka *state*) during your program's execution.
-* You need *conditionals* like `if` statements to make decisions.
-* You need *loops* to repeat tasks until a condition stops being true.
-* You need *functions* to organize your code into logical and reusable chunks.
+* 对值进行操作需要 *操作符*
+* 执行不同类型的操作比如数字类型的数学操作，或者字符串类型的输出，需要值和 *类型*
+* 程序执行过程中你需要 *变量* 保存数据
+* 你需要如 if 语句的 *条件语句* 来做决策
+* 重复执行任务直到一个条件不再为true，你需要 *循环*
+* 把你的代码有逻辑的组织成可以重复使用的代码块，你需要 *函数*
 
-Code comments are one effective way to write more readable code, which makes your program easier to understand, maintain, and fix later if there are problems.
+代码注释是写出可读性高的代码的有效方式，会让你的程序更易懂，更易维护，有问题的时候也更易修复。
 
-Finally, don't neglect the power of practice. The best way to learn how to write code is to write code.
+最后，不要忽视联系的力量。 学习写代码最好的方式就是动手写代码。
 
-I'm excited you're well on your way to learning how to code, now! Keep it up. Don't forget to check out other beginner programming resources (books, blogs, online training, etc.). This chapter and this book are a great start, but they're just a brief introduction.
+我很激动你已经在学习编程的路上了。坚持。 不要忘记多看看其他的一些入门编程的资源（书啊，博客啊，在线培训之类的）。 这一章节和这本书是一个好的开始，但它只是简洁的介绍。
 
-The next chapter will review many of the concepts from this chapter, but from a more JavaScript-specific perspective, which will highlight most of the major topics that are addressed in deeper detail throughout the rest of the series.
+接下来的章节会巩固这一章节中的而很多概念，但是从 JavaScript 学习长远角度， 我们会在这一系列接下来的内容重点关注未来深入探讨的细节的大多数重要主题。
 
