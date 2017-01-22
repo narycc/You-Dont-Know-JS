@@ -32,3 +32,14 @@
 *  类型与语法 （尚未开始）
 *  异步与性能 （尚未开始）
 *  ES6与未来 （尚未开始）
+
+### 翻译故事
+
+对我来说翻译最难的莫过于长句子了。在翻译up & going 第二章的时候就遇到一个长句子，让我非常的痛苦，因为我不知道怎么断句，更不知道我自己的理解是不是保持了作者要表达的意思，更加不知道是不是要保持作者的逐字逐句翻译。
+
+You've probably heard sentiments like / "coercion is evil" drawn from the fact / that there are clearly places / where coercion can produce some surprising results. Perhaps nothing evokes frustration from developers more than when the language surprises them.
+
+这句话经过一个英国留学生的指点，上面是她给我的断句，我知道一个短语叫draw a conclusion 我想在这里是另外一种表达 draw sentiments ，最后我打算保留我的理解：
+
+或许事实中很多地方给我一个结论，强制转换很可怕，以为他会引起令人意想不到的结果。而没有什么比语言的结果让他们意想不到更令程序员受挫的了。
+
