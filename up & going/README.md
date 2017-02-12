@@ -17,7 +17,19 @@ arithmetic expression -> 算术表达式
 
 assignment expression -> 赋值表达式
 
+stand in stark constrast 鲜明对比
+
+come to terms with 达成协议，接受，达成共识
+
+Hoisting 提升
+
+indulge 满足，纵容，使高兴
+
+conventional wisdom 世俗认知，世俗观点
+
+dedicate to 用于，致力于
+
+
 * [Chapter 1: 程序入门](ch1_zh.md) 翻译完成
 * [Chapter 2: Into JavaScript](ch2_zh.md) （翻译完成）
-* [Chapter 3: Into YDKJS](ch3_zh.md) (等待开始)
-* [Appendix A: Thank You's!](apA.md)
+* [Chapter 3: Into YDKJS](ch3_zh.md) (翻译完成)
